@@ -11,6 +11,15 @@ import java.util.UUID;
 public class DepartmentService {
 
     CourseService courseService = new CourseService();
+    Department department = new Department();
+
+    List<Department> departmentList = new ArrayList<>();
+    public List<Department> getDepartments() {
+        if (UniversityService.university.getDepartments() == null) {
+            UniversityService.university.setDepartments(new ArrayList<>());
+        }
+        return UniversityService.university.getDepartments();
+    }
 
     public Department addNewDepartment() {
         Scanner scanner = new Scanner(System.in);
@@ -42,4 +51,81 @@ public class DepartmentService {
         }
         return departmentList;
     }
+
+    public void updateDepartment(List<Department> departmentList) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter Department List:");
+        UniversityService.university.displayDepartments();
+
+        System.out.println("Enter Department Name to Update:");
+        String updateDepartment = scanner.nextLine();
+
+        for (Department department : departmentList) {
+            if (department.getName().equalsIgnoreCase(updateDepartment)) {
+
+                System.out.println("Enter new Department Name:");
+                String newName = scanner.nextLine();
+                department.setName(newName);
+                System.out.println(Constants.DEPARTMENT_UPDATED_SUCCESSFULLY);
+            }
+        }
+    }
+
+    public void deleteDepartment(List<Department> departmentList) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter Department List:");
+        UniversityService.university.displayDepartments();
+
+        System.out.println("Enter Department Name to Delete:");
+        String deleteDepartment = scanner.nextLine();
+
+        boolean removed = false;
+
+        for (int i = 0; i < departmentList.size(); i++) {
+            if (departmentList.get(i).getName().equalsIgnoreCase(deleteDepartment)) {
+
+                departmentList.remove(i);
+
+                System.out.println(Constants.DEPARTMENT_DELETED_SUCCESSFULLY);
+                return;
+
+            }
+        }
+    }
+
+    public Boolean handleDepartmentMenu(Integer departmentOption) {
+
+        switch (departmentOption) {
+            case 1 -> {
+                System.out.println("Add new Department");
+                departmentList.add(addNewDepartment());
+            }
+
+            case 2 -> {
+                System.out.println("Update Department");
+                updateDepartment(departmentList);
+            }
+
+            case 3 -> {
+                System.out.println("Show Departments");
+
+            }
+
+            case 4 -> {
+                System.out.println("Delete Department");
+                deleteDepartment(departmentList);
+            }
+
+            case 5 -> {
+                return false;
+            }
+        }
+        return true;
+    }
 }
+
+
+
+

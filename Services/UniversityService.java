@@ -1,5 +1,7 @@
 package ObjectOrientedProgramming.OOPDemo.Services;
 
+import ObjectOrientedProgramming.OOPDemo.Behaviours.DepartmentInterface;
+import ObjectOrientedProgramming.OOPDemo.Entities.Department;
 import ObjectOrientedProgramming.OOPDemo.Entities.University;
 
 import java.util.UUID;
@@ -48,3 +50,9 @@ public class UniversityService {
         return true;
     }
 }
+
+
+
+
+
+
