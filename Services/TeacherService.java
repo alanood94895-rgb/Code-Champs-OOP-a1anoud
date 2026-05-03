@@ -2,6 +2,7 @@ package ObjectOrientedProgramming.OOPDemo.Services;
 
 import ObjectOrientedProgramming.OOPDemo.Entities.Course;
 import ObjectOrientedProgramming.OOPDemo.Entities.Teacher;
+import ObjectOrientedProgramming.OOPDemo.Entities.University;
 import ObjectOrientedProgramming.OOPDemo.Utils.Constants;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import static ObjectOrientedProgramming.OOPDemo.Services.UniversityService.unive
 public class TeacherService {
 
     private static int counter = 1;
+    University university = new University();
 
     private final DepartmentService departmentService = new DepartmentService();
     private final CourseService courseService = new CourseService();

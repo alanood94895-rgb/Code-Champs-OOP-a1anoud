@@ -4,11 +4,12 @@ import ObjectOrientedProgramming.OOPDemo.Behaviours.DepartmentInterface;
 import ObjectOrientedProgramming.OOPDemo.Behaviours.UniversityInterface;
 import ObjectOrientedProgramming.OOPDemo.Services.UniversityService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class University extends ParentEntity implements UniversityInterface {
 
-    private List<Department> departments;
+    private List<Department> departments = new ArrayList<>();
 
     private String address;
 
@@ -77,6 +78,52 @@ public class University extends ParentEntity implements UniversityInterface {
                 System.out.println("Course Id: " + c.getId());
                 System.out.println("Course Name: " + c.getName());
                 System.out.println("Course Code: " + c.getCourseCode());
+            }
+        }
+    }
+
+    public void displayStudents() {
+        System.out.println("University Name: " + UniversityService.university.getName());
+
+        for (Department department : UniversityService.university.getDepartments()) {
+
+            System.out.println("Department Id: " + department.getId());
+            System.out.println("Department Name: " + department.getName());
+
+            for (Student student : department.getStudents()) {
+                System.out.println("Student Id: " + student.getId());
+                System.out.println("Student Name: " + student.getName());
+            }
+        }
+    }
+
+    public void displayTeachers() {
+        System.out.println("University Name: " + UniversityService.university.getName());
+
+        for (Department department : UniversityService.university.getDepartments()) {
+
+            System.out.println("Department Id: " + department.getId());
+            System.out.println("Department Name: " + department.getName());
+
+            for (Teacher teacher : department.getTeachers()) {
+                System.out.println("Teacher Id: " + teacher.getId());
+                System.out.println("Teacher Name: " + teacher.getName());
+            }
+        }
+    }
+
+    public void displayCourses() {
+        System.out.println("University Name: " + UniversityService.university.getName());
+
+        for (Department department : UniversityService.university.getDepartments()) {
+
+            System.out.println("Department Id: " + department.getId());
+            System.out.println("Department Name: " + department.getName());
+
+            for (Course course : department.getOfferedCourses()) {
+                System.out.println("Course Id: " + course.getId());
+                System.out.println("Course Name: " + course.getName());
+                System.out.println("Course Code: " + course.getCourseCode());
             }
         }
     }
