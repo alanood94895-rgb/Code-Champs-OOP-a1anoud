@@ -12,7 +12,7 @@ import java.util.UUID;
 
 import static ObjectOrientedProgramming.OOPDemo.Services.UniversityService.university;
 
-public class StudentService {
+public class studentService {
     CourseService courseService = new CourseService();
     DepartmentService departmentService = new DepartmentService();
 
@@ -57,8 +57,8 @@ public class StudentService {
         System.out.println("Enter student name to update:");
         String name = scanner.nextLine();
 
-        Department existingDept = findStudentByName(name);
-        if (existingDept == null) {
+        Student existingStudent = findStudentByName(name).getStudent();
+        if (existingStudent == null) {
             System.out.println(Constants.STUDENT_NOT_FOUND);
             return null;
         }
@@ -67,7 +67,7 @@ public class StudentService {
         String newName = scanner.nextLine();
 
         Student updatedStudent = new Student();
-        updatedStudent.setId(existingDept.getId());
+        updatedStudent.setId(existingStudent.getId());
         updatedStudent.setName(newName);
         updatedStudent.setOfferedCourses(courseService.addNewCourses());
 
