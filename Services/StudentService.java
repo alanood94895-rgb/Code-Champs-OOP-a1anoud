@@ -53,7 +53,6 @@ public class StudentService {
         return student;
     }
 
-    // Add multiple students
     public List<Student> addNewStudents() {
         List<Student> studentsList = new ArrayList<>();
 
