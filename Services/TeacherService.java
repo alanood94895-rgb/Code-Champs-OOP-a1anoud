@@ -65,6 +65,7 @@ public class TeacherService {
     }
 
     public Teacher updateTeacher() {
+        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter teacher name to update: ");
         String name = scanner.nextLine();
@@ -89,6 +90,7 @@ public class TeacherService {
 
 
     public boolean deleteTeacher() {
+        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter teacher name to delete: ");
         String name = scanner.nextLine();
@@ -121,7 +123,7 @@ public class TeacherService {
     }
 
     public void displayTeacherByName() {
-
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter teacher name: ");
         String name = scanner.nextLine();
 
@@ -139,16 +141,18 @@ public class TeacherService {
         System.out.println("Courses: " + teacher.getCourseList());
     }
 
-    // =========================
-    // MENU
-    // =========================
+
     public boolean handleTeacherMenu(int option) {
 
         switch (option) {
 
-            case 1 -> addNewTeacher();
+            case 1 -> {
+                    addNewTeacher();
+            }
 
-            case 2 -> updateTeacher();
+            case 2 -> {
+                    updateTeacher();
+            }
 
             case 3 -> {
                 System.out.println("Show teacher:");
@@ -178,4 +182,3 @@ public class TeacherService {
 }
 
 
-}
