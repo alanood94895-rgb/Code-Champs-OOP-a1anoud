@@ -10,7 +10,6 @@ import java.util.Scanner;
 import java.util.UUID;
 
 import static ObjectOrientedProgramming.OOPDemo.Services.UniversityService.university;
-
 public class TeacherService {
 
     private static int counter = 1;
@@ -35,7 +34,8 @@ public class TeacherService {
         teacher.setId(UUID.randomUUID());
 
         System.out.print("Enter name: ");
-        teacher.setName(scanner.nextLine());
+        String name = scanner.nextLine();
+        teacher.setName(name);
 
         System.out.print("Enter email: ");
         teacher.setEmail(scanner.nextLine());
@@ -98,15 +98,14 @@ public class TeacherService {
 
         boolean removed = getTeachers().remove(teacher);
 
-        System.out.println(
-                removed ? Constants.TEACHER_DELETED_SUCCESSFULLY
-                        : Constants.TEACHER_DELETED_FAILED
-        );
+        System.out.println(removed ? Constants.TEACHER_DELETED_SUCCESSFULLY : Constants.TEACHER_DELETED_FAILED);
 
         return removed;
     }
 
     public Teacher findTeacherByName(String name) {
+        if (name == null) return null;
+
         for (Teacher t : getTeachers()) {
             if (t.getName() != null && t.getName().equalsIgnoreCase(name)) {
                 return t;
@@ -114,7 +113,6 @@ public class TeacherService {
         }
         return null;
     }
-
 
     public void displayTeacherByName() {
 
@@ -135,9 +133,13 @@ public class TeacherService {
         System.out.println("Courses: " + teacher.getCourseList());
     }
 
-    // =========================
-    // MENU
-    // =========================
+
+    private void displayAllTeachers() {
+        System.out.println("All teachers:");
+        university.displayTeachers();
+    }
+
+
     public boolean handleTeacherMenu(int option) {
 
         switch (option) {
@@ -153,14 +155,10 @@ public class TeacherService {
 
             case 4 -> {
                 deleteTeacher();
-                System.out.println("All teachers:");
-                university.displayTeachers();
+                displayAllTeachers();
             }
 
-            case 5 -> {
-                System.out.println("All teachers:");
-                university.displayTeachers();
-            }
+            case 5 -> displayAllTeachers();
 
             case 6 -> {
                 return false;
@@ -172,3 +170,4 @@ public class TeacherService {
         return true;
     }
 }
+
