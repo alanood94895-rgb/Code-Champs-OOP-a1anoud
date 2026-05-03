@@ -1,8 +1,6 @@
 package ObjectOrientedProgramming.OOPDemo.Services;
 
 import ObjectOrientedProgramming.OOPDemo.Entities.Course;
-import ObjectOrientedProgramming.OOPDemo.Entities.Person;
-import ObjectOrientedProgramming.OOPDemo.Entities.Student;
 import ObjectOrientedProgramming.OOPDemo.Entities.Teacher;
 import ObjectOrientedProgramming.OOPDemo.Utils.Constants;
 
@@ -15,57 +13,54 @@ import static ObjectOrientedProgramming.OOPDemo.Services.UniversityService.unive
 
 public class TeacherService {
 
-    static Integer counter = 1;
-    PersonService personService = new PersonService();
-    DepartmentService departmentService = new DepartmentService();
-    CourseService courseService = new CourseService();
+    private static int counter = 1;
+
+    private final DepartmentService departmentService = new DepartmentService();
+    private final CourseService courseService = new CourseService();
+    private final Scanner scanner = new Scanner(System.in);
+
+
+    public List<Teacher> getTeachers() {
+        if (university.getTeacherList() == null) {
+            university.setTeacherList(new ArrayList<>());
+        }
+        return university.getTeacherList();
+    }
 
     public Teacher addNewTeacher() {
-        Scanner scanner = new Scanner(System.in);
+
         System.out.println("** Adding new teacher **");
 
-        Teacher teacher = (Teacher) personService.addNewPerson();
+        Teacher teacher = new Teacher();
         teacher.setId(UUID.randomUUID());
 
-        System.out.println("Enter Name");
-        String teacherName = scanner.nextLine();
-        teacher.setName(teacherName);
+        System.out.print("Enter name: ");
+        teacher.setName(scanner.nextLine());
 
-        System.out.println("Enter Email");
-        String teacherEmail = scanner.nextLine();
-        teacher.setEmail(teacherEmail);
+        System.out.print("Enter email: ");
+        teacher.setEmail(scanner.nextLine());
 
-        System.out.println("Enter Phone Number");
+        System.out.print("Enter phone number: ");
+        teacher.setPhoneNumber(scanner.nextLine());
 
-        teacher.setTeacherId("TH-" + counter);
-        counter += 1;
+        teacher.setTeacherId("TH-" + counter++);
 
-        System.out.println("Departments & Associated Courses: ");
-        UniversityService.university.displayDepartments();
+        System.out.println("Departments:");
+        university.displayDepartments();
 
         teacher.setDepartment(departmentService.addNewDepartment());
 
+        System.out.println("Assign courses:");
         teacher.setCourseList(courseService.addNewCourses());
+
+        getTeachers().add(teacher);
+
+        System.out.println(Constants.TEACHER_ADDED_SUCCESSFULLY);
 
         return teacher;
     }
 
-    public List<Teacher> addNewTeachers() {
-        Scanner scanner = new Scanner(System.in);
-        List<Teacher> teacherList = new ArrayList<>();
-        Boolean continueFlag = true;
-        while (continueFlag) {
-            teacherList.add(addNewTeacher());
-            System.out.println(Constants.INPUT_EXIT_CONTINUE_MESSAGE_TEACHER);
-            if (scanner.nextLine().equalsIgnoreCase("q")) {
-                continueFlag = false;
-            }
-        }
-        return teacherList;
-    }
-
     public Teacher updateTeacher() {
-        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter teacher name to update: ");
         String name = scanner.nextLine();
@@ -90,7 +85,6 @@ public class TeacherService {
 
 
     public boolean deleteTeacher() {
-        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter teacher name to delete: ");
         String name = scanner.nextLine();
@@ -112,7 +106,6 @@ public class TeacherService {
         return removed;
     }
 
-
     public Teacher findTeacherByName(String name) {
         for (Teacher t : getTeachers()) {
             if (t.getName() != null && t.getName().equalsIgnoreCase(name)) {
@@ -122,8 +115,9 @@ public class TeacherService {
         return null;
     }
 
+
     public void displayTeacherByName() {
-        Scanner scanner = new Scanner(System.in);
+
         System.out.print("Enter teacher name: ");
         String name = scanner.nextLine();
 
@@ -141,18 +135,16 @@ public class TeacherService {
         System.out.println("Courses: " + teacher.getCourseList());
     }
 
-
+    // =========================
+    // MENU
+    // =========================
     public boolean handleTeacherMenu(int option) {
 
         switch (option) {
 
-            case 1 -> {
-                    addNewTeacher();
-            }
+            case 1 -> addNewTeacher();
 
-            case 2 -> {
-                    updateTeacher();
-            }
+            case 2 -> updateTeacher();
 
             case 3 -> {
                 System.out.println("Show teacher:");
@@ -180,5 +172,3 @@ public class TeacherService {
         return true;
     }
 }
-
-
