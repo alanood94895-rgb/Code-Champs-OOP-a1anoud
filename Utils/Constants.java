@@ -35,7 +35,9 @@ public class Constants {
     public static String STUDENT_DELETED_FAILED = "student deleted failed: ";
     public static String TEACHER_NOT_FOUND ="teacher not found: ";
     public static String TEACHER_UPDATED_SUCCESSFULLY ="teacher has been updated: ";
-    public static String TEACHER_NOT_FOUND ="teacher not found: ";
+    public static String TEACHER_DELETED_SUCCESSFULLY ="teacher has been deleted: ";
+    public static String TEACHER_DELETED_FAILED ="teacher deleted failed: ";
+
 
 
 

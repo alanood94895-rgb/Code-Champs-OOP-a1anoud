@@ -110,9 +110,7 @@ public class TeacherService {
         return removed;
     }
 
-    // =========================
-    // FIND TEACHER
-    // =========================
+
     public Teacher findTeacherByName(String name) {
         for (Teacher t : getTeachers()) {
             if (t.getName() != null && t.getName().equalsIgnoreCase(name)) {
@@ -122,9 +120,6 @@ public class TeacherService {
         return null;
     }
 
-    // =========================
-    // DISPLAY TEACHER
-    // =========================
     public void displayTeacherByName() {
 
         System.out.print("Enter teacher name: ");
