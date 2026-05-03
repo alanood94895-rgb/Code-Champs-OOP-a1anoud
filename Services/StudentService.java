@@ -114,18 +114,11 @@ public class StudentService {
         System.out.println( "IdCard" + student.getIdCard());
         System.out.println( "email" + student.getEmail());
         System.out.println( "dateOfBirth" + student.getDateOfBirth());
-        System.out.println( "");
+        System.out.println( "department" + student.getDepartment());
+        System.out.println( "coursList" + student.getCourseList());
 
-        System.out.println("Department Name: " + department.getName());
-        for (Course c : department.getOfferedCourses()) {
-            System.out.println("Course Id: " + c.getId());
-            System.out.println("Course Name: " + c.getName());
-            System.out.println("Course Code: " + c.getCourseCode());
         }
     }
-
-
-
 
     public Boolean handleDepartmentMenu(Integer departmentOption){
         switch (departmentOption){
