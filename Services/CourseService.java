@@ -140,9 +140,7 @@ public class CourseService {
         university.displayCourses();
     }
 
-    // =========================
-    // MENU
-    // =========================
+
     public boolean handleCourseMenu(int option) {
 
         switch (option) {
