@@ -137,4 +137,7 @@ public class University extends ParentEntity implements UniversityInterface {
                 ", teacherList=" + teacherList +
                 '}';
     }
+
+    public void setTeacherList() {
+    }
 }

@@ -40,7 +40,7 @@ public class UniversityService {
             }
 
             case 4 -> {
-                university.setTeacherList(teacherService.addNewTeachers());
+                university.setTeacherList();
             }
 
             case 5 -> {

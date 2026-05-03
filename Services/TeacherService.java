@@ -1,6 +1,5 @@
 package ObjectOrientedProgramming.OOPDemo.Services;
 
-import ObjectOrientedProgramming.OOPDemo.Entities.Course;
 import ObjectOrientedProgramming.OOPDemo.Entities.Teacher;
 import ObjectOrientedProgramming.OOPDemo.Entities.University;
 import ObjectOrientedProgramming.OOPDemo.Utils.Constants;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
-import static ObjectOrientedProgramming.OOPDemo.Services.UniversityService.university;
 public class TeacherService {
 
     private static int counter = 1;
