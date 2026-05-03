@@ -86,7 +86,7 @@ public class StudentService {
         return false;
     }
 
-    public Boolean deleteDepartment(){
+    public Boolean deleteStudent(){
         System.out.println("Enter Department to Remove: ");
         Scanner scanner = new Scanner(System.in);
         Department departmentToRemove = findDepartmentByName(scanner.nextLine());
