@@ -109,10 +109,7 @@ public class StudentService {
 
         boolean status = getStudents().remove(studentToRemove);
 
-        System.out.println(
-                status ? Constants.STUDENT_DELETED_SUCCESSFULLY
-                        : Constants.STUDENT_DELETED_FAILED
-        );
+        System.out.println(status ? Constants.STUDENT_DELETED_SUCCESSFULLY : Constants.STUDENT_DELETED_FAILED);
 
         return status;
     }
