@@ -1,5 +1,6 @@
 package ObjectOrientedProgramming.OOPDemo.Services;
 
+import ObjectOrientedProgramming.OOPDemo.Entities.Course;
 import ObjectOrientedProgramming.OOPDemo.Entities.Department;
 import ObjectOrientedProgramming.OOPDemo.Utils.Constants;
 
