@@ -14,9 +14,7 @@ public class CourseService {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    // =========================
-    // GET COURSES
-    // =========================
+
     public List<Course> getCourses() {
         if (university.getCourseList() == null) {
             university.setCourseList(new ArrayList<>());
