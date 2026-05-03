@@ -145,35 +145,33 @@ public class StudentService {
     }
 
     public boolean handleStudentMenu(int studentOption) {
-
-        switch (studentOption) {
-            case 1 -> addNewStudent();
-
-            case 2 -> updateStudent();
-
-            case 3 -> {
-                System.out.println("Show student:");
+        switch (studentOption){
+            case 1-> {
+                addNewStudent();
+            }
+            case 2->{
+                updateStudent();
+            }
+            case 3 ->{
+                System.out.println("Show Department ");
                 displayStudentByName();
             }
 
-            case 4 -> {
+            case 4-> {
                 deleteStudent();
-                System.out.println("All students:");
-                university.displayStudents();
+                System.out.println("Show Departments");
+                university.displayDepartments();
             }
 
-            case 5 -> {
-                System.out.println("All students:");
-                university.displayStudents();
+            case 5->{
+                System.out.println(" Show Departments ");
+                university.displayDepartments();
             }
-
-            case 6 -> {
+            case 6 ->{
                 return false;
             }
 
-            default -> System.out.println("Invalid option!");
         }
-
         return true;
     }
 }
