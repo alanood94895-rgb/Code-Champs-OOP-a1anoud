@@ -72,7 +72,6 @@ public class StudentService {
         return studentsList;
     }
 
-    // Update student
     public Student updateStudent() {
         System.out.print("Enter student name to update: ");
         String name = scanner.nextLine();
