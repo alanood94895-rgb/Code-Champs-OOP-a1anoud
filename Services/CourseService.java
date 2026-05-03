@@ -42,9 +42,7 @@ public class CourseService {
         return course;
     }
 
-    // =========================
-    // ADD MULTIPLE COURSES
-    // =========================
+
     public List<Course> addNewCourses() {
 
         List<Course> courseList = new ArrayList<>();
