@@ -118,9 +118,6 @@ public class CourseService {
         return null;
     }
 
-    // =========================
-    // DISPLAY ONE COURSE
-    // =========================
     public void displayCourseByName() {
 
         System.out.print("Enter course name: ");
