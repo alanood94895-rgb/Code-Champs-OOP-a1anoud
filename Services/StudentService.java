@@ -120,7 +120,7 @@ public class StudentService {
         }
     }
 
-    public Boolean handleDepartmentMenu(Integer departmentOption){
+    public Boolean handleStudentMenu(Integer departmentOption){
         switch (departmentOption){
             case 1-> {
                 addNewDepartments();
