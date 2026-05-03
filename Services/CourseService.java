@@ -1,78 +1,105 @@
 package ObjectOrientedProgramming.OOPDemo.Services;
 
 import ObjectOrientedProgramming.OOPDemo.Entities.Course;
-import ObjectOrientedProgramming.OOPDemo.Entities.Teacher;
 import ObjectOrientedProgramming.OOPDemo.Utils.Constants;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
+import static ObjectOrientedProgramming.OOPDemo.Services.UniversityService.university;
+
 public class CourseService {
 
+    private final Scanner scanner = new Scanner(System.in);
+
+    // =========================
+    // GET COURSES
+    // =========================
+    public List<Course> getCourses() {
+        if (university.getCourseList() == null) {
+            university.setCourseList(new ArrayList<>());
+        }
+        return university.getCourseList();
+    }
+
+    // =========================
+    // ADD ONE COURSE
+    // =========================
     public Course addNewCourse() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("** Adding new Course to the department **");
+
+        System.out.println("** Adding new Course **");
 
         Course course = new Course();
         course.setId(UUID.randomUUID());
 
-        System.out.println("Enter course name");
-        String courseName = scanner.nextLine();
-        course.setName(courseName);
+        System.out.print("Enter course name: ");
+        course.setName(scanner.nextLine());
 
-        System.out.println("Enter course code");
-        String courseCode = scanner.nextLine();
-        course.setCourseCode(courseCode);
+        System.out.print("Enter course code: ");
+        course.setCourseCode(scanner.nextLine());
+
+        getCourses().add(course);
+
+        System.out.println(Constants.COURSE_ADDED_SUCCESSFULLY);
 
         return course;
-
     }
 
+    // =========================
+    // ADD MULTIPLE COURSES
+    // =========================
     public List<Course> addNewCourses() {
-        Scanner scanner = new Scanner(System.in);
+
         List<Course> courseList = new ArrayList<>();
-        Boolean continueFlag = true;
-        while (continueFlag) {
-            //System.out.println("Entering multiple courses");
+        boolean running = true;
+
+        while (running) {
             courseList.add(addNewCourse());
+
             System.out.println(Constants.INPUT_EXIT_CONTINUE_MESSAGE_COURSE);
-            if (scanner.nextLine().equalsIgnoreCase("q")) {
-                continueFlag = false;
+            String input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("q")) {
+                running = false;
             }
         }
 
         return courseList;
     }
-    public Course updateCourses() {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter Courses name to update: ");
+    // =========================
+    // UPDATE COURSE
+    // =========================
+    public Course updateCourse() {
+
+        System.out.print("Enter course name to update: ");
         String name = scanner.nextLine();
 
-        Course courses = findCourseName(name);
+        Course course = findCourseByName(name);
 
-        if (courses == null) {
+        if (course == null) {
             System.out.println(Constants.COURSE_NOT_FOUND);
             return null;
         }
 
         System.out.print("Enter new name: ");
-        courses.setName(scanner.nextLine());
+        course.setName(scanner.nextLine());
 
-        System.out.println("Update courses:");
-        courses.setCourseList(courseService.addNewCourses());
+        System.out.print("Enter new course code: ");
+        course.setCourseCode(scanner.nextLine());
 
         System.out.println(Constants.COURSE_UPDATED_SUCCESSFULLY);
 
-        return courses;
+        return course;
     }
 
-
+    // =========================
+    // DELETE COURSE
+    // =========================
     public boolean deleteCourse() {
-        Scanner scanner = new Scanner(System.in);
+
         System.out.print("Enter course name to delete: ");
         String name = scanner.nextLine();
 
@@ -83,70 +110,81 @@ public class CourseService {
             return false;
         }
 
-        boolean removed = getCourse().remove(course);
+        boolean removed = getCourses().remove(course);
 
-        System.out.println(removed ? Constants.COURSE_DELETED_SUCCESSFULLY : Constants.COURSE_DELETED_FAILED);
+        System.out.println(
+                removed ? Constants.COURSE_DELETED_SUCCESSFULLY
+                        : Constants.COURSE_DELETED_FAILED
+        );
 
         return removed;
     }
 
-    public Teacher findTeacherByName(String name) {
+    // =========================
+    // FIND COURSE
+    // =========================
+    public Course findCourseByName(String name) {
+
         if (name == null) return null;
 
-        for (Teacher t : getTeachers()) {
-            if (t.getName() != null && t.getName().equalsIgnoreCase(name)) {
-                return t;
+        for (Course c : getCourses()) {
+            if (c.getName() != null && c.getName().equalsIgnoreCase(name)) {
+                return c;
             }
         }
+
         return null;
     }
 
-    public void displayTeacherByName() {
-        Scanner scanner = new Scanner(System.in);
+    // =========================
+    // DISPLAY ONE COURSE
+    // =========================
+    public void displayCourseByName() {
 
-        System.out.print("Enter teacher name: ");
+        System.out.print("Enter course name: ");
         String name = scanner.nextLine();
 
-        Teacher teacher = findTeacherByName(name);
+        Course course = findCourseByName(name);
 
-        if (teacher == null) {
-            System.out.println(Constants.TEACHER_NOT_FOUND);
+        if (course == null) {
+            System.out.println(Constants.COURSE_NOT_FOUND);
             return;
         }
 
-        System.out.println("Name: " + teacher.getName());
-        System.out.println("Phone: " + teacher.getPhoneNumber());
-        System.out.println("Email: " + teacher.getEmail());
-        System.out.println("Department: " + teacher.getDepartment());
-        System.out.println("Courses: " + teacher.getCourseList());
+        System.out.println("Name: " + course.getName());
+        System.out.println("Code: " + course.getCourseCode());
     }
 
-
-    private void displayAllTeachers() {
-        System.out.println("All teachers:");
-        university.displayTeachers();
+    // =========================
+    // DISPLAY ALL COURSES
+    // =========================
+    private void displayAllCourses() {
+        System.out.println("All courses:");
+        university.displayCourses();
     }
 
-
-    public boolean handleTeacherMenu(int option) {
+    // =========================
+    // MENU
+    // =========================
+    public boolean handleCourseMenu(int option) {
 
         switch (option) {
 
-            case 1 -> addNewTeacher();
+            case 1 -> addNewCourse();
 
-            case 2 -> updateTeacher();
+            case 2 -> updateCourse();
 
             case 3 -> {
-                System.out.println("Show teacher:");
-                displayTeacherByName();
+                System.out.println("Show course:");
+                displayCourseByName();
             }
 
             case 4 -> {
-                deleteTeacher();
-                displayAllTeachers();
+                deleteCourse();
+                displayAllCourses();
             }
 
-            case 5 -> displayAllTeachers();
+            case 5 -> displayAllCourses();
 
             case 6 -> {
                 return false;
@@ -157,9 +195,4 @@ public class CourseService {
 
         return true;
     }
-}
-
-
-
-
 }
