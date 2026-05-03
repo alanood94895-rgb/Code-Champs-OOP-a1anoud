@@ -62,9 +62,6 @@ public class CourseService {
         return courseList;
     }
 
-    // =========================
-    // UPDATE COURSE
-    // =========================
     public Course updateCourse() {
 
         System.out.print("Enter course name to update: ");
