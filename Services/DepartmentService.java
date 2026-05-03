@@ -139,18 +139,18 @@ public class DepartmentService {
                 updateDepartment();
             }
             case 3 ->{
-                System.out.println("*** Show Department ***");
+                System.out.println("Show Department ");
                 displayDepartmentByName();
             }
 
             case 4-> {
                 deleteDepartment();
-                System.out.println("*** Show Departments ***");
+                System.out.println("Show Departments");
                 university.displayDepartments();
             }
 
             case 5->{
-                System.out.println("*** Show Departments ***");
+                System.out.println(" Show Departments ");
                 university.displayDepartments();
             }
             case 6 ->{
