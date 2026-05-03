@@ -2,6 +2,7 @@ package ObjectOrientedProgramming.OOPDemo;
 
 import ObjectOrientedProgramming.OOPDemo.Menu.Menu;
 import ObjectOrientedProgramming.OOPDemo.Services.DepartmentService;
+import ObjectOrientedProgramming.OOPDemo.Services.StudentService;
 import ObjectOrientedProgramming.OOPDemo.Services.UniversityService;
 import ObjectOrientedProgramming.OOPDemo.Utils.MenuMessages;
 
@@ -16,6 +17,7 @@ public class MainApp {
     public static void main(String[] args) {
         UniversityService universityService = new UniversityService();
         DepartmentService departmentService = new DepartmentService();
+        StudentService studentService = new StudentService();
 
         Boolean mainMenuContinue = true;
         while (mainMenuContinue) {
@@ -41,7 +43,16 @@ public class MainApp {
                     }
                 }
                 case 3 -> System.out.println("Teacher Menu");
-                case 4 -> System.out.println("Student Menu");
+                case 4 ->{
+                    System.out.println("Student Menu");
+                    Boolean studentMenuContinue = true;
+                    while (studentMenuContinue) {
+                        System.out.println(" *********** Student Menu ***********");
+                        System.out.println(MenuMessages.STUDENT_MENU_MESSAGE);
+                        Integer studentOption = input.nextInt();
+                        studentMenuContinue = studentService.handleStudentMenu(studentOption);}
+                }
+
                 case 5 -> System.out.println("Course Menu");
                 case 6 -> {
                     System.out.println("Exit");
