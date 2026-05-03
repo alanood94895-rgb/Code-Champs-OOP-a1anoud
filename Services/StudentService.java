@@ -87,20 +87,20 @@ public class StudentService {
     }
 
     public Boolean deleteStudent(){
-        System.out.println("Enter Department to Remove: ");
+        System.out.println("Enter Student to Remove: ");
         Scanner scanner = new Scanner(System.in);
-        Department departmentToRemove = findDepartmentByName(scanner.nextLine());
-        Boolean status = getDepartments().remove(departmentToRemove);
-        System.out.println(status.equals(true) ? Constants.DEPARTMENT_DELETED_SUCCESSFULLY : Constants.DEPARTMENT_DELETED_FAILED);
+        Student studentToRemove = findStudentByName(scanner.nextLine());
+        Boolean status = getStudents().remove(studentToRemove);
+        System.out.println(status.equals(true) ? Constants.STUDENT_DELETED_SUCCESSFULLY : Constants.STUDENT_DELETED_FAILED);
         return status;
 
 
     }
 
-    public Department findDepartmentByName(String departmentName) {
-        for(Department d : getDepartments()){
-            if(d.getName().equalsIgnoreCase(departmentName)){
-                return d;
+    public Student findStudentByName(String studentName) {
+        for(Student s : getStudent()){
+            if(s.getName().equalsIgnoreCase(studentName)){
+                return s;
             }
         }
         return null;
