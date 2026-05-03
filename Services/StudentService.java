@@ -109,7 +109,7 @@ public class StudentService {
     public void displayStudentByName(){
         System.out.println("Enter Student Name: ");
         Scanner scanner = new Scanner(System.in);
-        Student student = findDepartmentByName(scanner.nextLine());
+        Student student = findStudentByName(scanner.nextLine());
         System.out.println("University Name" + UniversityService.university.getName());
         System.out.println("Department Id: " + department.getId());
         System.out.println("Department Name: " + department.getName());
