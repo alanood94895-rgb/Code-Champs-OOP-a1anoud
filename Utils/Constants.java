@@ -33,6 +33,15 @@ public class Constants {
     public static String STUDENT_UPDATED_SUCCESSFULLY = "student has been updated: ";
     public static String STUDENT_DELETED_SUCCESSFULLY = "student has been deleted: ";
     public static String STUDENT_DELETED_FAILED = "student deleted failed: ";
+    public static String TEACHER_NOT_FOUND ="teacher not found: ";
+    public static String TEACHER_UPDATED_SUCCESSFULLY ="teacher has been updated: ";
+    public static String TEACHER_NOT_FOUND ="teacher not found: ";
+
+
+
+
+
+
 
 
 

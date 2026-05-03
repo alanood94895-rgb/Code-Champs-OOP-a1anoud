@@ -64,59 +64,69 @@ public class TeacherService {
         return teacherList;
     }
 
-    public Teacher updateTeacher () {
+    public Teacher updateTeacher() {
+
         System.out.print("Enter teacher name to update: ");
         String name = scanner.nextLine();
 
-        Teacher existingTeacher = findTeacherByName(name);
+        Teacher teacher = findTeacherByName(name);
 
-        if (existingTeacher == null) {
+        if (teacher == null) {
             System.out.println(Constants.TEACHER_NOT_FOUND);
             return null;
         }
 
-        System.out.print("Enter new teacher name: ");
-        String newName = scanner.nextLine();
-
-        existingTeacher.setName(newName);
+        System.out.print("Enter new name: ");
+        teacher.setName(scanner.nextLine());
 
         System.out.println("Update courses:");
-        List<Course> newCourses = courseService.addNewCourses();
-        existingTeacher.setCourseList(newCourses);
+        teacher.setCourseList(courseService.addNewCourses());
 
         System.out.println(Constants.TEACHER_UPDATED_SUCCESSFULLY);
-        return existingTeacher;
+
+        return teacher;
     }
 
+
     public boolean deleteTeacher() {
-        System.out.print("Enter teacher name to remove: ");
+
+        System.out.print("Enter teacher name to delete: ");
         String name = scanner.nextLine();
 
-        Teacher teacherToRemove = findTeacherByName(name);
+        Teacher teacher = findTeacherByName(name);
 
-        if (teacherToRemove == null) {
+        if (teacher == null) {
             System.out.println(Constants.TEACHER_NOT_FOUND);
             return false;
         }
 
-        boolean status = getTeacher().remove(teacherToRemove);
+        boolean removed = getTeachers().remove(teacher);
 
-        System.out.println(status ? Constants.TEACHER_DELETED_SUCCESSFULLY : Constants.TEACHER_DELETED_FAILED);
+        System.out.println(
+                removed ? Constants.TEACHER_DELETED_SUCCESSFULLY
+                        : Constants.TEACHER_DELETED_FAILED
+        );
 
-        return status;
+        return removed;
     }
 
-    public Student findTeacherByName(String teacherName) {
-        for (Student s : getTeacher()) {
-            if (s.getName() != null && s.getName().equalsIgnoreCase(teacherName)) {
-
-                return s;
+    // =========================
+    // FIND TEACHER
+    // =========================
+    public Teacher findTeacherByName(String name) {
+        for (Teacher t : getTeachers()) {
+            if (t.getName() != null && t.getName().equalsIgnoreCase(name)) {
+                return t;
             }
         }
         return null;
     }
 
+    // =========================
+    // DISPLAY TEACHER
+    // =========================
     public void displayTeacherByName() {
+
         System.out.print("Enter teacher name: ");
         String name = scanner.nextLine();
 
@@ -129,43 +139,48 @@ public class TeacherService {
 
         System.out.println("Name: " + teacher.getName());
         System.out.println("Phone: " + teacher.getPhoneNumber());
-        System.out.println("ID Card: " + teacher.getIdCard());
         System.out.println("Email: " + teacher.getEmail());
-        System.out.println("DOB: " + teacher.getDateOfBirth());
         System.out.println("Department: " + teacher.getDepartment());
         System.out.println("Courses: " + teacher.getCourseList());
     }
 
-    public boolean handleTeatcherMenu(int studentOption) {
-        switch (teacherOption){
-            case 1-> {
-                addNewTeacher();
-            }
-            case 2->{
-                updateTeacher();
-            }
-            case 3 ->{
-                System.out.println("Show Students ");
-                displayStudentByName();
+    // =========================
+    // MENU
+    // =========================
+    public boolean handleTeacherMenu(int option) {
+
+        switch (option) {
+
+            case 1 -> addNewTeacher();
+
+            case 2 -> updateTeacher();
+
+            case 3 -> {
+                System.out.println("Show teacher:");
+                displayTeacherByName();
             }
 
-            case 4-> {
-                deleteStudent();
-                System.out.println("Show Students");
-                university.displayDepartments();
+            case 4 -> {
+                deleteTeacher();
+                System.out.println("All teachers:");
+                university.displayTeachers();
             }
 
-            case 5->{
-                System.out.println(" Show Students ");
-                university.displayDepartments();
+            case 5 -> {
+                System.out.println("All teachers:");
+                university.displayTeachers();
             }
-            case 6 ->{
+
+            case 6 -> {
                 return false;
             }
 
+            default -> System.out.println("Invalid option!");
         }
+
         return true;
     }
+}
 
 
 }
