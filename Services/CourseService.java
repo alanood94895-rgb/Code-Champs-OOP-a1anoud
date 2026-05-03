@@ -22,9 +22,6 @@ public class CourseService {
         return university.getCourseList();
     }
 
-    // =========================
-    // ADD ONE COURSE
-    // =========================
     public Course addNewCourse() {
 
         System.out.println("** Adding new Course **");
