@@ -110,8 +110,12 @@ public class StudentService {
         System.out.println("Enter Student Name: ");
         Scanner scanner = new Scanner(System.in);
         Student student = findStudentByName(scanner.nextLine());
-        System.out.println("University Name" + UniversityService.university.getName());
-        System.out.println("Department Id: " + department.getId());
+        System.out.println( "PhoneNumber" + student.getPhoneNumber());
+        System.out.println( "IdCard" + student.getIdCard());
+        System.out.println( "email" + student.getEmail());
+        System.out.println( "dateOfBirth" + student.getDateOfBirth());
+        System.out.println( "");
+
         System.out.println("Department Name: " + department.getName());
         for (Course c : department.getOfferedCourses()) {
             System.out.println("Course Id: " + c.getId());
