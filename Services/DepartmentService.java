@@ -95,6 +95,15 @@ public class DepartmentService {
         }
     }
 
+    public Department findDepartmentByName(String departmentName) {
+        for(Department d : getDepartments()){
+            if(d.getName().equalsIgnoreCase(departmentName)){
+                return d;
+            }
+        }
+        return null;
+    }
+
     public Boolean handleDepartmentMenu(Integer departmentOption) {
 
         switch (departmentOption) {
