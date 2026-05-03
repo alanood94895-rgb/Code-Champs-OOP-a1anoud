@@ -103,6 +103,19 @@ public class DepartmentService {
         }
         return null;
     }
+    public void displayDepartmentByName(){
+        System.out.println("Enter Department Name: ");
+        Scanner scanner = new Scanner(System.in);
+        Department department = findDepartmentByName(scanner.nextLine());
+        System.out.println("University Name" + UniversityService.university.getName());
+        System.out.println("Department Id: " + department.getId());
+        System.out.println("Department Name: " + department.getName());
+        for (Course c : department.getOfferedCourses()) {
+            System.out.println("Course Id: " + c.getId());
+            System.out.println("Course Name: " + c.getName());
+            System.out.println("Course Code: " + c.getCourseCode());
+        }
+    }
 
     public Boolean handleDepartmentMenu(Integer departmentOption) {
 
