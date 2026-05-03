@@ -85,9 +85,7 @@ public class CourseService {
         return course;
     }
 
-    // =========================
-    // DELETE COURSE
-    // =========================
+
     public boolean deleteCourse() {
 
         System.out.print("Enter course name to delete: ");
