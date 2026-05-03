@@ -18,7 +18,6 @@ public class StudentService {
     private final DepartmentService departmentService = new DepartmentService();
     private final Scanner scanner = new Scanner(System.in);
 
-    // Get all students
     public List<Student> getStudents() {
         if (university.getStudentList() == null) {
             university.setStudentList(new ArrayList<>());
