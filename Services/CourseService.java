@@ -100,17 +100,11 @@ public class CourseService {
 
         boolean removed = getCourses().remove(course);
 
-        System.out.println(
-                removed ? Constants.COURSE_DELETED_SUCCESSFULLY
-                        : Constants.COURSE_DELETED_FAILED
-        );
+        System.out.println(removed ? Constants.COURSE_DELETED_SUCCESSFULLY : Constants.COURSE_DELETE_FAILED);
 
         return removed;
     }
 
-    // =========================
-    // FIND COURSE
-    // =========================
     public Course findCourseByName(String name) {
 
         if (name == null) return null;
