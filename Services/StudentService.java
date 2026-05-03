@@ -153,18 +153,18 @@ public class StudentService {
                 updateStudent();
             }
             case 3 ->{
-                System.out.println("Show Department ");
+                System.out.println("Show Students ");
                 displayStudentByName();
             }
 
             case 4-> {
                 deleteStudent();
-                System.out.println("Show Departments");
+                System.out.println("Show Students");
                 university.displayDepartments();
             }
 
             case 5->{
-                System.out.println(" Show Departments ");
+                System.out.println(" Show Students ");
                 university.displayDepartments();
             }
             case 6 ->{
