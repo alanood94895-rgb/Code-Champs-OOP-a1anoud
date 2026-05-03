@@ -114,18 +114,16 @@ public class StudentService {
         return status;
     }
 
-    // Find student
     public Student findStudentByName(String studentName) {
         for (Student s : getStudents()) {
-            if (s.getName() != null &&
-                    s.getName().equalsIgnoreCase(studentName)) {
+            if (s.getName() != null && s.getName().equalsIgnoreCase(studentName)) {
+
                 return s;
             }
         }
         return null;
     }
 
-    // Display one student
     public void displayStudentByName() {
         System.out.print("Enter student name: ");
         String name = scanner.nextLine();
@@ -146,7 +144,6 @@ public class StudentService {
         System.out.println("Courses: " + student.getCourseList());
     }
 
-    // Menu handler
     public boolean handleStudentMenu(int studentOption) {
 
         switch (studentOption) {
