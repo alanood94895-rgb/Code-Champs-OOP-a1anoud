@@ -25,6 +25,9 @@ public class Constants {
     public static String PERSON_ENTER_DATE_OF_BIRTH = "Enter Date of Birth: ";
     public static String DEPARTMENT_UPDATED_SUCCESSFULLY = "department has been updated: ";
     public static String DEPARTMENT_DELETED_SUCCESSFULLY = "department has been deleted: ";
+    public static String DEPARTMENT_UPDATED_FAILED = "department update has failed: ";
+    public static String DEPARTMENT_NOT_FOUND = "department not found: ";
+    public static String DEPARTMENT_DELETED_FAILED = "department deleted failed: ";
 
 
 
