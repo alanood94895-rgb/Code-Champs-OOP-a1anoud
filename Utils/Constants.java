@@ -28,9 +28,8 @@ public class Constants {
     public static String DEPARTMENT_UPDATED_FAILED = "department update has failed: ";
     public static String DEPARTMENT_NOT_FOUND = "department not found: ";
     public static String DEPARTMENT_DELETED_FAILED = "department deleted failed: ";
-    public static String STUDENT_NOT_FOUND = "student not found: ";
     public static String STUDENT_ADDED_SUCCESSFULLY = "student has been added : ";
-    public static String STUDENT_UPDATED_FAILED = "student update has failed: ";
+    public static String STUDENT_NOT_FOUND = "student not found: ";
     public static String STUDENT_UPDATED_SUCCESSFULLY = "student has been updated: ";
     public static String STUDENT_DELETED_SUCCESSFULLY = "student has been deleted: ";
     public static String STUDENT_DELETED_FAILED = "student deleted failed: ";

@@ -96,7 +96,6 @@ public class StudentService {
         return existingStudent;
     }
 
-    // Delete student
     public boolean deleteStudent() {
         System.out.print("Enter student name to remove: ");
         String name = scanner.nextLine();
