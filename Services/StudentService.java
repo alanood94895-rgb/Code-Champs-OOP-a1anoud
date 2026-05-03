@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
+import static ObjectOrientedProgramming.OOPDemo.Services.UniversityService.university;
+
 public class StudentService {
     CourseService courseService = new CourseService();
     DepartmentService departmentService = new DepartmentService();
@@ -26,7 +28,7 @@ public class StudentService {
         String stdName = scanner.nextLine();
 
         System.out.println("Departments List");
-        UniversityService.university.displayDepartments();
+        university.displayDepartments();
 
         System.out.println("Enter Department: ");
         student.setDepartment(departmentService.addNewDepartment());
@@ -129,19 +131,19 @@ public class StudentService {
                 updateStudent();
             }
             case 3 ->{
-                System.out.println("Show Department ");
-                displayDepartmentByName();
+                System.out.println("Show Students ");
+                displayStudentByName();
             }
 
             case 4-> {
-                deleteDepartment();
-                System.out.println("Show Departments");
-                university.displayDepartments();
+                deleteStudent();
+                System.out.println("Show Students");
+                university.displayStudent();
             }
 
             case 5->{
-                System.out.println(" Show Departments ");
-                university.displayDepartments();
+                System.out.println(" Show Students ");
+                university.displayStudents();
             }
             case 6 ->{
                 return false;
