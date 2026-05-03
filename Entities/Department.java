@@ -73,4 +73,8 @@ public class Department extends ParentEntity implements DepartmentInterface {
     public Student[] getStudents() {
         return new Student[0];
     }
+
+    public Teacher[] getTeachers() {
+        return new Teacher[0];
+    }
 }
