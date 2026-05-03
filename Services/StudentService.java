@@ -106,10 +106,10 @@ public class StudentService {
         return null;
     }
 
-    public void displayDepartmentByName(){
-        System.out.println("Enter Department Name: ");
+    public void displayStudentByName(){
+        System.out.println("Enter Student Name: ");
         Scanner scanner = new Scanner(System.in);
-        Department department = findDepartmentByName(scanner.nextLine());
+        Student student = findDepartmentByName(scanner.nextLine());
         System.out.println("University Name" + UniversityService.university.getName());
         System.out.println("Department Id: " + department.getId());
         System.out.println("Department Name: " + department.getName());
