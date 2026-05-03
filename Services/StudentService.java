@@ -120,13 +120,13 @@ public class StudentService {
         }
     }
 
-    public Boolean handleStudentMenu(Integer departmentOption){
-        switch (departmentOption){
+    public Boolean handleStudentMenu(Integer studentOption){
+        switch (studentOption){
             case 1-> {
-                addNewDepartments();
+                addNewStudent();
             }
             case 2->{
-                updateDepartment();
+                updateStudent();
             }
             case 3 ->{
                 System.out.println("Show Department ");
