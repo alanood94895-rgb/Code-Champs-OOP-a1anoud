@@ -25,7 +25,7 @@ public class StudentService {
         return university.getStudentList();
     }
 
-    // Add one student
+
     public Student addNewStudent() {
         System.out.println(" ** Adding new Student **");
 
