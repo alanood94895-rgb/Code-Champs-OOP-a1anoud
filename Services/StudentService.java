@@ -43,7 +43,6 @@ public class StudentService {
         Department department = departmentService.addNewDepartment();
         student.setDepartment(department);
 
-        // Assign courses from department
         if (department != null) {
             student.setCourseList(department.getOfferedCourses());
         }
