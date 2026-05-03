@@ -53,6 +53,7 @@ public class DepartmentService {
         }
         return departmentList;
     }
+
     public Department updateDepartment() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter department name to update:");
@@ -75,9 +76,6 @@ public class DepartmentService {
         modifyDepartment(name, updatedDept);
         return updatedDept;
     }
-
-
-
 
     public Boolean modifyDepartment(String departmentName, Department updatedDepartment) {
         Department existingDept = findDepartmentByName(departmentName);
