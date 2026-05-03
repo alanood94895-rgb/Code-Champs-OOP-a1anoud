@@ -136,13 +136,13 @@ public class TeacherService {
         System.out.println("Courses: " + teacher.getCourseList());
     }
 
-    public boolean handleStudentMenu(int studentOption) {
-        switch (studentOption){
+    public boolean handleTeatcherMenu(int studentOption) {
+        switch (teacherOption){
             case 1-> {
-                addNewStudent();
+                addNewTeacher();
             }
             case 2->{
-                updateStudent();
+                updateTeacher();
             }
             case 3 ->{
                 System.out.println("Show Students ");
