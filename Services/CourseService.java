@@ -134,9 +134,7 @@ public class CourseService {
         System.out.println("Code: " + course.getCourseCode());
     }
 
-    // =========================
-    // DISPLAY ALL COURSES
-    // =========================
+
     private void displayAllCourses() {
         System.out.println("All courses:");
         university.displayCourses();
