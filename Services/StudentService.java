@@ -144,34 +144,53 @@ public class StudentService {
         System.out.println("Courses: " + student.getCourseList());
     }
 
+    public void displayAllStudents() {
+
+        List<Student> students = getStudents();
+
+        if (students.isEmpty()) {
+            System.out.println("No students found.");
+            return;
+        }
+
+        System.out.println("All Students");
+
+        for (Student s : students) {
+            System.out.println("Name: " + s.getName());
+            System.out.println("Email: " + s.getEmail());
+            System.out.println("Phone: " + s.getPhoneNumber());
+        }
+    }
+
     public boolean handleStudentMenu(int studentOption) {
         switch (studentOption){
-            case 1-> {
+            case 1 -> {
                 addNewStudent();
             }
-            case 2->{
+
+            case 2 ->{
                 updateStudent();
             }
-            case 3 ->{
-                System.out.println("Show Students ");
+
+            case 3 -> {
+                deleteStudent();
+            }
+
+            case 4 -> {
                 displayStudentByName();
             }
 
-            case 4-> {
-                deleteStudent();
-                System.out.println("Show Students");
-                university.displayDepartments();
+            case 5 -> {
+                displayAllStudents();
             }
 
-            case 5->{
-                System.out.println(" Show Students ");
-                university.displayDepartments();
-            }
-            case 6 ->{
+            case 6 -> {
                 return false;
             }
 
+            default -> System.out.println("Invalid option!");
         }
+
         return true;
     }
 }
