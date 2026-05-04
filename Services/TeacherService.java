@@ -75,6 +75,12 @@ public class TeacherService {
         System.out.print("Enter new name: ");
         teacher.setName(scanner.nextLine());
 
+        System.out.print("Enter new email: ");
+        teacher.setEmail(scanner.nextLine());
+
+        System.out.print("Enter new phone number: ");
+        teacher.setPhoneNumber(scanner.nextLine());
+
         System.out.println("Update courses:");
         teacher.setCourseList(courseService.addNewCourses());
 
@@ -102,6 +108,7 @@ public class TeacherService {
 
         return removed;
     }
+
 
     public Teacher findTeacherByName(String name) {
         if (name == null) return null;
@@ -132,33 +139,49 @@ public class TeacherService {
         System.out.println("Department: " + teacher.getDepartment());
         System.out.println("Courses: " + teacher.getCourseList());
     }
+    public void displayAllTeachers() {
 
+        List<Teacher> teachers = getTeachers();
 
-    private void displayAllTeachers() {
-        System.out.println("All teachers:");
-        university.displayTeachers();
+        if (teachers.isEmpty()) {
+            System.out.println("No teachers found");
+            return;
+        }
+
+        System.out.println(" All Teachers ");
+
+        for (Teacher t : teachers) {
+            System.out.println("Name: " + t.getName());
+            System.out.println("Email: " + t.getEmail());
+            System.out.println("Phone: " + t.getPhoneNumber());
+        }
     }
+
 
 
     public boolean handleTeacherMenu(int option) {
 
         switch (option) {
 
-            case 1 -> addNewTeacher();
+            case 1 -> {
+                addNewTeacher();
+            }
 
-            case 2 -> updateTeacher();
+            case 2 -> {
+                updateTeacher();
+            }
 
             case 3 -> {
-                System.out.println("Show teacher:");
+                deleteTeacher();
+            }
+
+            case 4 ->{
                 displayTeacherByName();
             }
 
-            case 4 -> {
-                deleteTeacher();
+            case 5 ->{
                 displayAllTeachers();
             }
-
-            case 5 -> displayAllTeachers();
 
             case 6 -> {
                 return false;
@@ -169,5 +192,6 @@ public class TeacherService {
 
         return true;
     }
+
 }
 

@@ -26,24 +26,28 @@ public class MenuMessages {
             5- Go Back to Main Menu
             """;
     public static String STUDENT_MENU_MESSAGE = """
-            1- ADD
-            2- UPDATE
-            3- DISPLAY
-            4- DELETE
-            5- Go Back to Main Menu
+             1- ADD
+             2- UPDATE
+             3- DELETE
+             4- DISPLAY BY NAME
+             5- DISPLAY ALL
+             6- Go Back to Main Menu
+           
             """;
     public static String TEACHER_MENU_MESSAGE = """
             1- ADD
             2- UPDATE
-            3- DISPLAY
-            4- DELETE
-            5- Go Back to Main Menu
+            3- DELETE
+            4- DISPLAY BY NAME
+            5- DISPLAY ALL
+            6- Go Back to Main Menu
             """;
     public static String COURSE_MENU_MESSAGE = """
-            1- ADD
+             1- ADD
             2- UPDATE
-            3- DISPLAY
-            4- DELETE
-            5- Go Back to Main Menu
+            3- DELETE
+            4- DISPLAY BY NAME
+            5- DISPLAY ALL
+            6- Go Back to Main Menu
             """;
 }
