@@ -1,8 +1,7 @@
 package ObjectOrientedProgramming.OOPDemo.Services;
 
 import ObjectOrientedProgramming.OOPDemo.Entities.Course;
-import ObjectOrientedProgramming.OOPDemo.Entities.Teacher;
-import ObjectOrientedProgramming.OOPDemo.Entities.University;
+import ObjectOrientedProgramming.OOPDemo.Entities.Department;
 import ObjectOrientedProgramming.OOPDemo.Utils.Constants;
 
 import java.sql.SQLOutput;
@@ -12,7 +11,17 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class CourseService {
-    University university = new University();
+    static Scanner scanner = new Scanner(System.in);
+    Department department = new Department();
+
+    public List<Course> getCourses(){
+        if (department.getOfferedCourses() == null) {
+            department.setOfferedCourses(new ArrayList<>());
+        }
+        return department.getOfferedCourses();
+    }
+
+
 
     public Course addNewCourse() {
         Scanner scanner = new Scanner(System.in);
@@ -34,8 +43,7 @@ public class CourseService {
     }
 
     public List<Course> addNewCourses() {
-        Scanner scanner = new Scanner(System.in);
-        List<Course> courseList = new ArrayList<>();
+        List<Course> courseList = getCourses();
         Boolean continueFlag = true;
         while (continueFlag) {
             //System.out.println("Entering multiple courses");
@@ -47,69 +55,91 @@ public class CourseService {
         }
 
         return courseList;
+    }
+
+    public void displayCourses(){
+
+        for (Course c : getCourses()) {
+            System.out.println("Course Id: " + c.getId());
+            System.out.println("Course Name: " + c.getName());
+            System.out.println("Course Code: " + c.getCourseCode());
+        }
+    }
+    public Course updateCourse(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter course code to update:");
+        String code = scanner.nextLine();
+
+        Course existingCourse = findCourseByCourseCode(code);
+        if (existingCourse == null) {
+            System.out.println(Constants.COURSE_NOT_FOUND);
+            return null;
+        }
+
+        Course updatedCourse = new Course();
+        updatedCourse.setId(existingCourse.getId());
+
+        System.out.println("Enter new Course Code:");
+        updatedCourse.setCourseCode(scanner.nextLine());
+        System.out.println("Enter new Nama:");
+        updatedCourse.setName(scanner.nextLine());
+
+        modifyCourse(code, updatedCourse);
+        return updatedCourse;
+
+    }
+
+    public Boolean modifyCourse(String courseCode, Course updatedCourse) {
+        Course existingCourse = findCourseByCourseCode(courseCode);
+        if (!existingCourse.getCourseCode().equals(null)) {
+            existingCourse.setName(updatedCourse.getName());
+            existingCourse.setCourseCode(updatedCourse.getCourseCode());
+            System.out.println(Constants.COURSE_UPDATED_SUCCESSFULLY);
+            return true;
+        }
+
+        System.out.println(Constants.COURSE_UPDATE_FAILED);
+        return false;
+    }
+
+    public Boolean deleteCourse(){
+        System.out.println("Enter Course to Remove: ");
+        Scanner scanner = new Scanner(System.in);
+        Course courseToRemove = findCourseByCourseCode(scanner.nextLine());
+        Boolean status = getCourses().remove(courseToRemove);
+        System.out.println(status.equals(true) ? Constants.COURSE_DELETED_SUCCESSFULLY : Constants.COURSE_DELETE_FAILED);
+        return status;
 
 
     }
 
-    public String updateCourse(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(Constants.COURSE_UPDATED_SUCCESSFULLY);
-        String courseNameToUpdate = scanner.nextLine();
 
-        List<Course> courseList = new ArrayList<>();
-        System.out.println(Constants.COURSE_UPDATED_SUCCESSFULLY);
-        String newCourseName = scanner.nextLine();
+    public Course findCourseByCourseCode(String courseCode) {
 
-        for (int i =0; i< courseList.size()-1; i++){
-            String oldCourseName = String.valueOf(courseList.get(i));
-            if (oldCourseName.equals(courseNameToUpdate) ){
-                oldCourseName = newCourseName;
+        for (Course c : department.getOfferedCourses()) {
+            if (c.getCourseCode().equals(courseCode)) {
+                return c;
             }
         }
-        return newCourseName;
-    }
-
-    public String deleteCourse(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(Constants.COURSE_DELETED_SUCCESSFULLY);
-        String courseNameToDelete = scanner.nextLine();
-
-        List<Course> courseList = new ArrayList<>();
-
-        for (int i =0; i< courseList.size()-1; i++){
-            String oldCourseName = String.valueOf(courseList.get(i));
-            if (oldCourseName.equals(courseNameToDelete) ){
-                courseList.remove(courseNameToDelete);
-            }
-        }
-        return courseNameToDelete +" " + "DELETED";
-
+        System.out.println(Constants.COURSE_NOT_FOUND);
+        return null;
     }
 
     public Boolean handleCourseMenu(Integer courseOption) {
-        DepartmentService departmentService = new DepartmentService();
-        StudentService studentService = new StudentService();
-        TeacherService teacherService = new TeacherService();
-        CourseService courseService = new CourseService();
-
 
         switch (courseOption) {
             case 1 -> {
-                System.out.println("Add new course");
-                courseService.addNewCourse();
+                getCourses().add(addNewCourse());
             }
             case 2 -> {
-                System.out.println("Updated course");
-                courseService.updateCourse();
+                updateCourse();
             }
             case 3 -> {
-                System.out.println("Show Courses");
-                university.displayCourses();
+                getCourses().remove(deleteCourse());
             }
 
             case 4 -> {
-                System.out.println("Delete Course");
-                courseService.deleteCourse();
+                displayCourses();
             }
 
             case 5 -> {
@@ -118,5 +148,4 @@ public class CourseService {
         }
         return true;
     }
-
 }
