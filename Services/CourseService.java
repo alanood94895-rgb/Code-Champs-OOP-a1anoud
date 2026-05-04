@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
+import static ObjectOrientedProgramming.OOPDemo.Services.UniversityService.university;
+
 public class CourseService {
     static Scanner scanner = new Scanner(System.in);
     Department department = new Department();
@@ -125,26 +127,33 @@ public class CourseService {
         return null;
     }
 
-    public Boolean handleCourseMenu(Integer courseOption) {
-
-        switch (courseOption) {
-            case 1 -> {
-                getCourses().add(addNewCourse());
+    public Boolean handleCouresMenu(Integer cpurseOption){
+        switch (cpurseOption){
+            case 1-> {
+                addNewCourse();
             }
-            case 2 -> {
-                updateCourse();
+            case 2->{
+               updateCourse();
             }
-            case 3 -> {
-                getCourses().remove(deleteCourse());
-            }
-
-            case 4 -> {
+            case 3 ->{
+                System.out.println("Show Course ");
                 displayCourses();
             }
 
-            case 5 -> {
+            case 4-> {
+                deleteCourse();
+                System.out.println("Show Course ");
+                university.displayDepartments();
+            }
+
+            case 5->{
+                System.out.println("Show Course ");
+                university.displayCourses();
+            }
+            case 6 ->{
                 return false;
             }
+
         }
         return true;
     }
